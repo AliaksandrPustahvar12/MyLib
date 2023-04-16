@@ -11,11 +11,11 @@ class BooksListViewController: UIViewController {
     
     let service = ServiceApi()
     let imageCache = NSCache<AnyObject, UIImage>()
+    var books: [Book] = []
+    let spinner = UIActivityIndicatorView()
 
     @IBOutlet var booksTableView: UITableView!
     
-    var books: [Book] = []
-    let spinner = UIActivityIndicatorView()
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpSpinner()
@@ -23,7 +23,17 @@ class BooksListViewController: UIViewController {
         booksTableView.dataSource = self
         booksTableView.register(UINib(nibName: String(describing: XibBooksTableViewCell.self), bundle: nil), forCellReuseIdentifier: String(describing: XibBooksTableViewCell.self))
         
+        loadBooks()
+    }
+    
+    func loadBooks() {
         service.getBooks { result in
+            guard let result = result else {
+                DispatchQueue.main.async {
+                    self.pushErrorAlert()
+                }
+                return
+            }
             DispatchQueue.main.async {
                 self.books = result.docs
                 self.booksTableView.reloadData()
@@ -31,12 +41,28 @@ class BooksListViewController: UIViewController {
             }
         }
     }
+    
     func setUpSpinner() {
         spinner.center = self.view.center
         spinner.style = .large
         spinner.color = UIColor.black.withAlphaComponent(0.5)
         self.view.addSubview(spinner)
         spinner.startAnimating()
+    }
+    
+    func pushErrorAlert() {
+        let alert = UIAlertController(title: "Проблема получения данных.", message: "Проверьте соединение и попробуйте еще раз.", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Попробовать еще раз", style: .default) { action in
+            self.loadBooks()
+        }
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        
+        alert.addAction(action)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: spinner.stopAnimating)
+        
     }
 }
 

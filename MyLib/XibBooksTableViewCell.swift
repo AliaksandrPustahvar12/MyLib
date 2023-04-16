@@ -12,10 +12,8 @@ class XibBooksTableViewCell: UITableViewCell {
     let service = ServiceApi()
 
     @IBOutlet var bookImage: UIImageView!
-    
     @IBOutlet var bookAuthor: UILabel!
     @IBOutlet var bookTitle: UILabel!
-    
     @IBOutlet var bookYear: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,6 +32,7 @@ class XibBooksTableViewCell: UITableViewCell {
         guard let author = model.authorName else {
             return bookAuthor.text = "No info"
         }
+       // bookImage.image = UIImage(systemName: "book")
         bookAuthor.text = author[0]
         guard let year = model.firstPublishYear else {
           return  bookYear.text = "First publish year: no info"

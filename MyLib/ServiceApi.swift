@@ -10,21 +10,31 @@ import UIKit
 
 class ServiceApi {
     
-    let urlString = "https://openlibrary.org/search.json?q=miss+marple"
-    
-    func getBooks(completion: @escaping(Books) -> ()) {
-        let url = URL(string: urlString)!
+    func getBooks(completion: @escaping(Books?) -> ()) {
+        let urlString = "https://openlibrary.org/search.json?q=miss+marple"
+        
+        guard let url = URL(string: urlString) else {
+            completion(nil)
+            print("Wrong URL")
+            return
+        }
         let request = URLRequest(url: url)
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data else { return }
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            if let booksData = try? decoder.decode(Books.self, from: data) {
+            do {
+                guard let data else {
+                    completion(nil)
+                    print("No data")
+                    return
+                }
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let booksData = try decoder.decode(Books.self, from: data)
                 completion(booksData)
             }
-            else {
-                print("Fail")
+            catch {
+                completion(nil)
+                print("Parsing error")
             }
         }
         task.resume()
