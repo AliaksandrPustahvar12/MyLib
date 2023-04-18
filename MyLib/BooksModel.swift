@@ -13,7 +13,9 @@ struct Books: Decodable {
 
 struct Book: Decodable {
     var title: String
+    var key: String
     var firstPublishYear: Int?
     var coverI: Int?
     var authorName: [String]?
+    var ratingsAverage: Double?
 }

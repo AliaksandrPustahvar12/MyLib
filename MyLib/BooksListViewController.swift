@@ -13,7 +13,8 @@ class BooksListViewController: UIViewController {
     let imageCache = NSCache<AnyObject, UIImage>()
     var books: [Book] = []
     let spinner = UIActivityIndicatorView()
-
+    var book: Book?
+    
     @IBOutlet var booksTableView: UITableView!
     
     override func viewDidLoad() {
@@ -78,22 +79,31 @@ extension BooksListViewController: UITableViewDataSource, UITableViewDelegate {
         
         if let coverId  = books[indexPath.row].coverI {
             if let imageFromCache = imageCache.object(forKey: coverId as AnyObject) {
-                  cell.bookImage.image = imageFromCache
-              }
-
+                cell.bookImage.image = imageFromCache
+            }
+            
             self.service.getImage(id: coverId) { coverImage in
-                guard let image = coverImage else {
-                    cell.bookImage.image = UIImage(systemName: "book")
-                    return
-                    }
+                guard let image = coverImage else { return }
+                
                 DispatchQueue.main.async {
                     self.imageCache.setObject(image, forKey: coverId as AnyObject)
-                cell.bookImage.image = image
+                    cell.bookImage.image = image
+                }
             }
         }
-    } else {
-           cell.bookImage.image = UIImage(systemName: "book")
-        }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        book = books[indexPath.row]
+        booksTableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "showBookDetails", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showBookDetails" {
+            let destination = segue.destination as! BookDetailsViewController
+            destination.book = book
+        }
     }
 }

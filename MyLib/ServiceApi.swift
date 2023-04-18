@@ -54,9 +54,65 @@ class ServiceApi {
             }
             catch {
                 callback(nil)
-                print( "Error!")
+                print( "Error parsing cover! url: \(url)")
             }
         }
+    }
+    
+    func getBookDescription(id: String, completion: @escaping(BookDetails?) -> ()) {
+        guard let url = URL(string: "https://openlibrary.org\(id).json") else {
+            completion(nil)
+            print("Wrong URL")
+            return
+        }
+        let request = URLRequest(url: url)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            do {
+                guard let data else {
+                    completion(nil)
+                    print("No data")
+                    return
+                }
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let details = try decoder.decode(BookDetails.self, from: data)
+                completion(details)
+            }
+            catch {
+                completion(nil)
+                print("Parsing error")
+            }
+        }
+        task.resume()
+    }
+    
+    func getBookDescriptionShort(id: String, completion: @escaping(BookDetailsShort?) -> ()) {
+        guard let url = URL(string: "https://openlibrary.org\(id).json") else {
+            completion(nil)
+            print("Wrong URL")
+            return
+        }
+        let request = URLRequest(url: url)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            do {
+                guard let data else {
+                    completion(nil)
+                    print("No data")
+                    return
+                }
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let details = try decoder.decode(BookDetailsShort.self, from: data)
+                completion(details)
+            }
+            catch {
+                completion(nil)
+                print("Parsing error")
+            }
+        }
+        task.resume()
     }
 }
 

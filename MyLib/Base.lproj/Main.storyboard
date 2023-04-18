@@ -34,6 +34,7 @@
                     <navigationItem key="navigationItem" title="Books" id="xWC-Q8-f6u"/>
                     <connections>
                         <outlet property="booksTableView" destination="WAX-OD-qpK" id="Jnm-wS-bQS"/>
+                        <segue destination="ScB-9r-XeD" kind="show" identifier="showBookDetails" id="GmM-vv-3me"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -48,6 +49,12 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="04A-d5-gCC">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" systemColor="systemBrownColor"/>
+                        <color key="tintColor" systemColor="labelColor"/>
+                        <color key="barTintColor" systemColor="systemBrownColor"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" systemColor="labelColor"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -58,8 +65,30 @@
             </objects>
             <point key="canvasLocation" x="116.79389312977099" y="32.394366197183103"/>
         </scene>
+        <!--Book Details View Controller-->
+        <scene sceneID="igg-PU-LS1">
+            <objects>
+                <viewController storyboardIdentifier="showBookDetails" id="ScB-9r-XeD" customClass="BookDetailsViewController" customModule="MyLib" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GeQ-fu-9CX">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="v2n-HW-emM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="827-Kh-cPT"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bdJ-CC-UQy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1811" y="32"/>
+        </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBrownColor">
             <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
