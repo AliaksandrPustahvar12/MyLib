@@ -12,3 +12,8 @@
 
 
 Добавил приложению appIcon.
+
+Вот несколько скриншотов с телефона:
+![IMG_5217](https://user-images.githubusercontent.com/120573218/232885891-006f0ce6-74ab-4c37-86e7-f17a8f910dff.jpeg)
+![IMG_5218](https://user-images.githubusercontent.com/120573218/232885915-8ad17db6-deef-4f07-9a52-792d4cb14730.jpeg)
+![IMG_5219](https://user-images.githubusercontent.com/120573218/232885931-3bfc7be3-a73a-4592-a4e7-cf5e3f09f0f7.jpeg)
