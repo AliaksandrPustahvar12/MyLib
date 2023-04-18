@@ -9,18 +9,15 @@ import Foundation
 import UIKit
 
 class ServiceApi {
-    
-    func getBooks(completion: @escaping(Books?) -> ()) {
+    func getBooks(completion: @escaping(Books?) -> Void) {
         let urlString = "https://openlibrary.org/search.json?q=miss+marple"
-        
         guard let url = URL(string: urlString) else {
             completion(nil)
             print("Wrong URL")
             return
         }
         let request = URLRequest(url: url)
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        let task = URLSession.shared.dataTask(with: request) { data, _, _ in
             do {
                 guard let data else {
                     completion(nil)
@@ -31,16 +28,14 @@ class ServiceApi {
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let booksData = try decoder.decode(Books.self, from: data)
                 completion(booksData)
-            }
-            catch {
+            } catch {
                 completion(nil)
                 print("Parsing error")
             }
         }
         task.resume()
     }
-    
-    func getImage(id: Int, callback: @escaping((UIImage?) -> Void)){
+    func getImage(id: Int, callback: @escaping((UIImage?) -> Void)) {
         guard let url = URL(string: "https://covers.openlibrary.org/b/id/\(id)-M.jpg") else {
             callback(nil)
             return
@@ -51,23 +46,20 @@ class ServiceApi {
                 if let coverImage = UIImage(data: data) {
                     callback(coverImage)
                 }
-            }
-            catch {
+            } catch {
                 callback(nil)
                 print( "Error parsing cover! url: \(url)")
             }
         }
     }
-    
-    func getBookDescription(id: String, completion: @escaping(BookDetails?) -> ()) {
+    func getBookDescription(id: String, completion: @escaping(BookDetails?) -> Void) {
         guard let url = URL(string: "https://openlibrary.org\(id).json") else {
             completion(nil)
             print("Wrong URL")
             return
         }
         let request = URLRequest(url: url)
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        let task = URLSession.shared.dataTask(with: request) { data, _, _ in
             do {
                 guard let data else {
                     completion(nil)
@@ -78,24 +70,21 @@ class ServiceApi {
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let details = try decoder.decode(BookDetails.self, from: data)
                 completion(details)
-            }
-            catch {
+            } catch {
                 completion(nil)
                 print("Parsing error")
             }
         }
         task.resume()
     }
-    
-    func getBookDescriptionShort(id: String, completion: @escaping(BookDetailsShort?) -> ()) {
+    func getBookDescriptionShort(id: String, completion: @escaping(BookDetailsShort?) -> Void) {
         guard let url = URL(string: "https://openlibrary.org\(id).json") else {
             completion(nil)
             print("Wrong URL")
             return
         }
         let request = URLRequest(url: url)
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        let task = URLSession.shared.dataTask(with: request) { data, _, _ in
             do {
                 guard let data else {
                     completion(nil)
@@ -106,8 +95,7 @@ class ServiceApi {
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let details = try decoder.decode(BookDetailsShort.self, from: data)
                 completion(details)
-            }
-            catch {
+            } catch {
                 completion(nil)
                 print("Parsing error")
             }
@@ -115,4 +103,3 @@ class ServiceApi {
         task.resume()
     }
 }
-

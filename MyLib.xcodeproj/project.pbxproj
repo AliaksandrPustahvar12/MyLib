@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		D4EAA0F029E9ACA300479427 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EAA0EF29E9ACA300479427 /* AppDelegate.swift */; };
 		D4EAA0F229E9ACA300479427 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EAA0F129E9ACA300479427 /* SceneDelegate.swift */; };
-		D4EAA0F429E9ACA300479427 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EAA0F329E9ACA300479427 /* ViewController.swift */; };
 		D4EAA0F729E9ACA300479427 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4EAA0F529E9ACA300479427 /* Main.storyboard */; };
 		D4EAA0F929E9ACA500479427 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4EAA0F829E9ACA500479427 /* Assets.xcassets */; };
 		D4EAA0FC29E9ACA500479427 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4EAA0FA29E9ACA500479427 /* LaunchScreen.storyboard */; };
@@ -26,7 +25,6 @@
 		D4EAA0EC29E9ACA300479427 /* MyLib.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLib.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4EAA0EF29E9ACA300479427 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4EAA0F129E9ACA300479427 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D4EAA0F329E9ACA300479427 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D4EAA0F629E9ACA300479427 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D4EAA0F829E9ACA500479427 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4EAA0FB29E9ACA500479427 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -72,20 +70,51 @@
 			children = (
 				D4EAA0EF29E9ACA300479427 /* AppDelegate.swift */,
 				D4EAA0F129E9ACA300479427 /* SceneDelegate.swift */,
-				D4EAA0F329E9ACA300479427 /* ViewController.swift */,
-				D4EAA10729EAEAD100479427 /* BooksListViewController.swift */,
-				D4EAA11329EC58E500479427 /* BookDetailsViewController.swift */,
-				D4EAA10B29EAF3FE00479427 /* XibBooksTableViewCell.xib */,
-				D4EAA10D29EAF95800479427 /* XibBooksTableViewCell.swift */,
-				D4EAA10329E9AD1E00479427 /* BooksModel.swift */,
-				D4EAA11529ED6AC500479427 /* BookDetailsModel.swift */,
-				D4EAA10529E9B21D00479427 /* ServiceApi.swift */,
+				D4EAA11A29EEE35700479427 /* Views */,
+				D4EAA11929EEE32C00479427 /* Models */,
+				D4EAA11B29EEE3C900479427 /* Service */,
+				D4EAA11829EEE30200479427 /* TableViewCell */,
 				D4EAA0F529E9ACA300479427 /* Main.storyboard */,
 				D4EAA0F829E9ACA500479427 /* Assets.xcassets */,
 				D4EAA0FA29E9ACA500479427 /* LaunchScreen.storyboard */,
 				D4EAA0FD29E9ACA500479427 /* Info.plist */,
 			);
 			path = MyLib;
+			sourceTree = "<group>";
+		};
+		D4EAA11829EEE30200479427 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				D4EAA10D29EAF95800479427 /* XibBooksTableViewCell.swift */,
+				D4EAA10B29EAF3FE00479427 /* XibBooksTableViewCell.xib */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		D4EAA11929EEE32C00479427 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D4EAA10329E9AD1E00479427 /* BooksModel.swift */,
+				D4EAA11529ED6AC500479427 /* BookDetailsModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D4EAA11A29EEE35700479427 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D4EAA10729EAEAD100479427 /* BooksListViewController.swift */,
+				D4EAA11329EC58E500479427 /* BookDetailsViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D4EAA11B29EEE3C900479427 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				D4EAA10529E9B21D00479427 /* ServiceApi.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -98,6 +127,7 @@
 				D4EAA0E829E9ACA300479427 /* Sources */,
 				D4EAA0E929E9ACA300479427 /* Frameworks */,
 				D4EAA0EA29E9ACA300479427 /* Resources */,
+				D4EAA11729EEB2F400479427 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -155,12 +185,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D4EAA11729EEB2F400479427 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\nfi\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D4EAA0E829E9ACA300479427 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4EAA0F429E9ACA300479427 /* ViewController.swift in Sources */,
 				D4EAA0F029E9ACA300479427 /* AppDelegate.swift in Sources */,
 				D4EAA11429EC58E500479427 /* BookDetailsViewController.swift in Sources */,
 				D4EAA10429E9AD1E00479427 /* BooksModel.swift in Sources */,
@@ -315,6 +364,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7B6YSJUL25;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyLib/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -343,6 +393,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7B6YSJUL25;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyLib/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
